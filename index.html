@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ほしいものマトリックス</title>
+　<link rel="apple-touch-icon" href="icon-wish.png">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="titleBlock">
+        <h1>ほしいものリスト</h1>
+        <p class="sub">ささいな出費を警戒せよ。小さな穴が大きな船を沈めるであろうから。</p>
+      </div>
+
+      <div class="monthRow">
+        <label class="label">対象月</label>
+        <input id="month" type="month" />
+        <button id="newMonthBtn" class="ghost" type="button">今月に戻す</button>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h2>追加</h2>
+
+      <div class="formGrid">
+        <div class="field">
+          <label>アイテム名</label>
+          <input id="name" type="text" placeholder="例：参考書 / コート / イヤホン" maxlength="60" />
+        </div>
+
+        <div class="field">
+          <label>金額（円）</label>
+          <input id="price" type="number" inputmode="numeric" min="0" step="1" placeholder="例：3980" />
+        </div>
+
+        <div class="field">
+          <label>分類（4象限）</label>
+          <select id="quad">
+            <option value="IU">Imp.&Urg.</option>
+            <option value="I">Important</option>
+            <option value="U">Urgent</option>
+            <option value="N">Neither</option>
+          </select>
+        </div>
+
+        <div class="field actions">
+          <button id="addBtn" class="primary" type="button">追加</button>
+        </div>
+      </div>
+
+      <div class="hint">
+        ・チェックしたアイテムが「選択合計」に反映されます。<br />
+        ・アイテムはドラッグして象限を移動できます。
+      </div>
+    </section>
+
+    <section class="summary">
+      <div class="sumBox">
+        <div class="sumLabel">選択合計</div>
+        <div class="sumValue"><span id="sum">0</span><span class="yen">円</span></div>
+      </div>
+
+      <div class="sumBox">
+        <div class="sumLabel">予算（今月）</div>
+        <div class="sumValue">
+          <input id="budget" class="budgetInput" type="number" inputmode="numeric" min="0" step="1" placeholder="例：15000" />
+          <span class="yen">円</span>
+        </div>
+      </div>
+
+      <div class="sumBox">
+        <div class="sumLabel">残り</div>
+        <div class="sumValue"><span id="remain">0</span><span class="yen">円</span></div>
+      </div>
+
+      <div class="budgetBarWrap">
+        <div class="budgetBar">
+          <div id="budgetFill" class="budgetFill"></div>
+        </div>
+        <div id="budgetNote" class="budgetNote"></div>
+      </div>
+
+      <div class="sumActions">
+        <button id="clearSelectedBtn" class="ghost" type="button">選択を外す</button>
+        <button id="deleteSelectedBtn" class="danger" type="button">選択を削除</button>
+      </div>
+    </section>
+
+    <section class="matrixWrap">
+      <div class="matrixHeader">
+        <h2>4象限（今月）</h2>
+        <div class="tiny">ドラッグ：カードを長押し→動かす（iPhoneは長押しが必要なことがあります）</div>
+      </div>
+
+      <div class="matrix">
+        <div class="cell" data-quad="IU">
+          <div class="cellHead">
+            <div class="cellTitle">Imp.&Urg.</div>
+            <div class="cellSub">今月絶対</div>
+          </div>
+          <ul class="list droppable" id="list_IU" data-quad="IU"></ul>
+        </div>
+
+        <div class="cell" data-quad="I">
+          <div class="cellHead">
+            <div class="cellTitle">Important</div>
+            <div class="cellSub">いつか必要</div>
+          </div>
+          <ul class="list droppable" id="list_I" data-quad="I"></ul>
+        </div>
+
+        <div class="cell" data-quad="U">
+          <div class="cellHead">
+            <div class="cellTitle">Urgent</div>
+            <div class="cellSub">今ほしいor今しか買えない</div>
+          </div>
+          <ul class="list droppable" id="list_U" data-quad="U"></ul>
+        </div>
+
+        <div class="cell" data-quad="N">
+          <div class="cellHead">
+            <div class="cellTitle">Neither</div>
+            <div class="cellSub">いらないけどほしい</div>
+          </div>
+          <ul class="list droppable" id="list_N" data-quad="N"></ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span>保存：この端末のブラウザ（localStorage）</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
