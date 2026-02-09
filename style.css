@@ -1,0 +1,660 @@
+:root{
+  --bg:#fafafc;
+  --card:#ffffff;
+
+  --text:#22222a;
+  --muted:#8c8c98;
+  --line: rgba(20,20,35,.08);
+
+  /* マットな薄ピンク */
+  --pink:#f3a6c9;
+  --pinkDeep:#e38bb5;
+  --pinkSoft: rgba(243,166,201,.18);
+
+  --danger:#e57390;
+
+  --shadow: 0 4px 10px rgba(0,0,0,.04);
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+}
+
+.app{
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 18px 14px 28px;
+}
+
+.top{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:flex-end;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+
+h1{
+  margin:0;
+  font-size:18px;
+  font-weight:600;
+}
+
+.sub{
+  margin:6px 0 0;
+  color: var(--muted);
+  font-size:12px;
+}
+
+.monthRow{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  background: var(--card);
+  border:1px solid var(--line);
+  padding:8px 10px;
+  border-radius:12px;
+}
+
+.label{ color: var(--muted); font-size:12px; }
+
+.panel{
+  background: var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+}
+
+.panel h2{
+  margin:0 0 10px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.formGrid{
+  display:grid;
+  gap:10px;
+  grid-template-columns: 1.3fr 0.8fr 1fr auto;
+  align-items:end;
+}
+
+.field label{
+  display:block;
+  font-size:12px;
+  color: var(--muted);
+  margin-bottom:6px;
+}
+
+input, select, button{
+  font: inherit;
+}
+
+input, select{
+  width:100%;
+  padding:9px 10px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  outline:none;
+}
+
+input:focus, select:focus{
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px var(--pinkSoft);
+}
+
+.actions{ display:flex; justify-content:flex-end; }
+
+button{
+  border-radius:10px;
+  padding:8px 12px;
+  border:1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  cursor:pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+button.primary{
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #fff;
+}
+
+button.primary:hover{
+  background: var(--pinkDeep);
+}
+
+button.danger{
+  background: var(--danger);
+  border-color: var(--danger);
+  color:#fff;
+}
+
+button.ghost{
+  background:#fff;
+}
+
+.hint{
+  margin-top:10px;
+  font-size:12px;
+  color: var(--muted);
+  line-height:1.6;
+}
+
+.summary{
+  margin-top:12px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:stretch;
+}
+
+.sumBox{
+  flex: 1 1 220px;
+  background: var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+}
+
+.sumLabel{
+  color: var(--muted);
+  font-size:11px;
+}
+
+.sumValue{
+  font-size:18px;
+  margin-top:4px;
+}
+
+.yen{ font-size:12px; color: var(--muted); }
+
+.budgetInput{
+  width: 120px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+.budgetBarWrap{
+  flex: 1 1 100%;
+  background: var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+}
+
+.budgetBar{
+  width:100%;
+  height:10px;
+  border-radius:999px;
+  background: rgba(0,0,0,.05);
+  overflow:hidden;
+}
+
+.budgetFill{
+  height:100%;
+  width:0%;
+  background: var(--pink);
+}
+
+.budgetFill.over{
+  background: var(--danger);
+}
+
+.budgetNote{
+  margin-top:6px;
+  font-size:12px;
+  color: var(--muted);
+}
+
+.budgetNote.over{
+  color: var(--danger);
+}
+
+.sumActions{
+  display:flex;
+  gap:10px;
+  flex: 1 1 100%;
+}
+
+.matrixWrap{ margin-top:14px; }
+
+.matrixHeader{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  margin: 8px 2px 10px;
+}
+
+.matrixHeader h2{
+  margin:0;
+  font-size:13px;
+  font-weight:600;
+}
+
+.tiny{ font-size:11px; color: var(--muted); }
+
+.matrix{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;   /* ← 行も均等に */
+  gap: 10px;
+
+  height: 72vh;   /* ← ★これが超重要 */
+}
+
+.cell{
+  background: var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+}
+
+.cellHead{
+  margin-bottom:10px;
+}
+
+.cellTitle{
+  font-size:13px;
+}
+.cellSub{
+  font-size:11px;
+  color: var(--muted);
+}
+
+.list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  min-height: 60px;
+}
+
+/* スワイプUI用：外側liには枠を持たせない */
+.item{
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: block;
+}
+
+.item.dragging{
+  opacity:.6;
+}
+
+.droppable.dragover{
+  outline: 2px dashed var(--pink);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+.item input[type="checkbox"]{
+  width:16px;
+  height:16px;
+  accent-color: var(--pink);
+}
+
+.meta{ flex:1; min-width:0; }
+
+.name{
+  font-size:13px;
+}
+
+.price{
+  margin-top:2px;
+  font-size:12px;
+  color: var(--muted);
+}
+
+.rowActions{
+  display:flex;
+  gap:6px;
+}
+
+.iconBtn{
+  padding:4px 6px;
+  border-radius:8px;
+  font-size:12px;
+}
+
+.foot{
+  margin-top:18px;
+  color: var(--muted);
+  font-size:11px;
+  text-align:center;
+}
+
+/* スマホ */
+@media (max-width: 780px){
+  .formGrid{ grid-template-columns: 1fr 1fr; }
+  .actions{ grid-column: 1 / -1; }
+  .actions button{ width:100%; }
+  .matrix{ grid-template-columns: 1fr; }
+}
+/* ==== しっかり四象限（2×2固定） ==== */
+
+/* マトリックス全体の高さを決める（好みで調整OK） */
+.matrix{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;   /* ← 行も同じ比率にする */
+  gap: 10px;
+
+  /* ここが肝：4枠が同じ高さになるように「全体の高さ」を固定 */
+  height: min(68vh, 640px);      /* PCでもスマホでも破綻しにくい */
+}
+
+/* 各象限を「上：ヘッダー / 下：リスト」にする */
+.cell{
+  display: flex;
+  flex-direction: column;
+  min-height: 0;                 /* flexの中でスクロールさせるために必要 */
+}
+
+/* ヘッダーは固定表示っぽくする（スクロールしても残る） */
+.cellHead{
+  position: sticky;
+  top: 0;
+  background: var(--card);
+  padding-bottom: 8px;
+  z-index: 1;
+}
+
+/* リスト部分だけスクロールさせる（枠の高さは変わらない） */
+.list{
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 4px;            /* スクロールバーが被るのを少し回避 */
+}
+
+/* スマホでも「四象限を崩さない」設定
+   2×2を維持したいので、縦に1列にしない */
+@media (max-width: 780px){
+  .matrix{
+    height: 70vh;                /* スマホは少し高めが見やすい */
+  }
+}
+
+/* さらに小さい画面用：2×2を維持しつつ、横スクロールを許可したい場合 */
+@media (max-width: 420px){
+  .matrixWrap{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .matrix{
+    min-width: 420px;            /* 4象限の見た目を守る */
+  }
+}
+/* タップできる感じを少しだけ出す */
+.item .meta{
+  cursor: pointer;
+}
+
+/* 四象限が狭いので、項目の余白を少し減らす（お好み） */
+.item{
+  padding: 6px;
+  gap: 8px;
+}
+
+.name{ font-size: 12.5px; }
+.price{ font-size: 11.5px; }
+/* ===== スワイプで削除（リマインダー風） ===== */
+.item{
+  padding: 0;              /* 中身を swipeMain 側で持つ */
+  overflow: hidden;
+}
+
+.swipeRow{
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.swipeActions{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 86px;             /* 削除ボタン領域 */
+  transform: translateX(86px);   /* ← 画面外に隠す */
+  transition: transform .16s ease;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  background: var(--danger);
+}
+
+.swipeRow.open .swipeActions{
+  transform: translateX(0);
+}
+
+.swipeDelete{
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.swipeMain{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 8px;
+  padding: 6px;            /* ここで余白 */
+  align-items: flex-start;
+  background: #fff;
+  transform: translateX(0px);
+  transition: transform .16s ease;
+  will-change: transform;
+  width: 100%;
+}
+
+.swipeRow.open .swipeMain{
+  transform: translateX(-86px);
+}
+
+/* タップで編集できる感じ */
+.swipeMain .meta{
+  cursor: pointer;
+}
+
+/* ちょいコンパクト（枠が狭い対策） */
+.name{ font-size: 12.5px; }
+.price{ font-size: 11.5px; }
+
+/* ===== リマインダー式スワイプ（普段は右の削除領域を確保しない） ===== */
+.swipeRow{
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.swipeActions{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 86px;                  /* JSの ACTION_W と同じ */
+
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+
+  background: var(--danger);
+  transform: translateX(86px);  /* ← 普段は画面外に隠す */
+  transition: transform .16s ease;
+}
+
+.swipeDelete{
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+}
+
+.swipeMain{
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  padding: 6px;
+  align-items: flex-start;
+
+  background: #fff;
+  transform: translateX(0);
+  transition: transform .16s ease;
+  will-change: transform;
+}
+
+/* 開いた時だけ：中身が左にずれて、削除が出る */
+.swipeRow.open .swipeMain{
+  transform: translateX(-86px);
+}
+.swipeRow.open .swipeActions{
+  transform: translateX(0);
+}
+/* ==== 四象限の中でスクロール ==== */
+.matrix{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  height: 70vh;          /* ここは好みで 60〜75vh くらい */
+}
+
+.cell{
+  display: flex;
+  flex-direction: column;
+  min-height: 0;         /* 重要：これがないと中がスクロールしない */
+}
+
+.list{
+  flex: 1;
+  min-height: 0;         /* 重要 */
+  overflow: auto;        /* 中だけスクロール */
+  padding-right: 4px;
+}
+/* ==== FIX: 四象限の中でスクロールさせて重なり防止 ==== */
+
+/* 4象限全体に高さを与える（ここが無いと中スクロールにならずはみ出す） */
+.matrix{
+  height: 72vh !important;          /* 好みで 65〜78vh */
+  grid-template-rows: 1fr 1fr !important;
+  align-items: stretch !important;
+}
+
+/* grid内の子が縮めるようにする（これが無いと overflow が効かず外へ出る） */
+.cell{
+  height: 100% !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* リスト部分だけスクロール */
+.list{
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding-right: 4px !important;
+}
+
+/* ついでに、スワイプ行の高さが増えすぎないよう少し締める（任意） */
+.swipeMain{
+  padding: 6px !important;
+}
+
+/* =====================================================
+   FINAL FIX : 四象限レイアウト確定版
+   ===================================================== */
+
+/* マトリックスサイズ固定 */
+.matrix{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  grid-template-rows: 1fr 1fr !important;
+  gap: 10px !important;
+  height: 72vh !important;
+}
+
+/* 枠の中は「上ヘッダー / 下スクロール」 */
+.cell{
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+  height: 100% !important;
+}
+
+/* リスト部分のみスクロール */
+.list{
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* ===== スワイプ ===== */
+.item{
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.swipeRow{
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.swipeActions{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 86px;
+  transform: translateX(86px);
+  transition: transform .16s ease;
+  background: var(--danger);
+  display:flex;
+}
+
+.swipeRow.open .swipeActions{
+  transform: translateX(0);
+}
+
+.swipeMain{
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  padding: 6px;
+  background: #fff;
+  transform: translateX(0);
+  transition: transform .16s ease;
+}
+
+.swipeRow.open .swipeMain{
+  transform: translateX(-86px);
+}
